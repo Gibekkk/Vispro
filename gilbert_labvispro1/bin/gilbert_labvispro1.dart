@@ -40,13 +40,13 @@ void main(List<String> arguments) {
     int? piramidLength = int.parse(stdin.readLineSync()!);
     switch (piramid) {
       case 1:
-        piramidRunner.piramid(0, piramidLength, "unordered", 0);
+        piramidRunner.piramid(0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle"));
         break;
       case 2:
-        piramidRunner.piramid(0, piramidLength, "ordered", 0);
+        piramidRunner.piramid(0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "sort"));
         break;
       default:
-        piramidRunner.piramid(0, piramidLength, "unordered", 0);
+        piramidRunner.piramid(0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle"));
     }
   } on Exception catch (e) {
     stderr.write("Error: ${e}");
