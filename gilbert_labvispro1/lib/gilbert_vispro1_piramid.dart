@@ -1,20 +1,13 @@
 import 'dart:io';
 
-piramid(int iteratorJ, int length, String jenisPiramid, int lastOrder) {
+piramid(int iteratorJ, int length, int lastOrder, var dataArr) {
   int i = 0;
   int order = lastOrder;
   String text = "";
   while (i <= iteratorJ) {
-    switch (jenisPiramid) {
-      case "unordered":
-        text += (i <= iteratorJ) ? "1" : "";
-        break;
-      default:
-        order++;
-        order = (order > 9) ? 1 : order;
-        text += (i <= iteratorJ) ? "${order}" : "";
-        break;
-    }
+    order = (order > dataArr.length - 1) ? 0 : order;
+    text += (i <= iteratorJ) ? "${dataArr[order]}" : "";
+    order++;
     i++;
     text += (i <= iteratorJ) ? " " : "";
   }
@@ -27,5 +20,5 @@ piramid(int iteratorJ, int length, String jenisPiramid, int lastOrder) {
   text = "";
   stdout.write("\n");
   if (iteratorJ < length - 1)
-    piramid(iteratorJ + 1, length, jenisPiramid, order);
+    piramid(iteratorJ + 1, length, order, dataArr);
 }
