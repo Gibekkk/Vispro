@@ -6,12 +6,12 @@ import 'package:gilbert_labvispro2/nomor3.dart' as nomor3;
 import 'package:gilbert_labvispro2/nomor4.dart' as nomor4;
 import 'package:gilbert_labvispro2/nomor5.dart' as nomor5;
 import 'package:gilbert_labvispro2/nomor6.dart' as nomor6;
-import 'package:gilbert_labvispro2/nomor7/nomor7.dart' as nomor7;
+import 'package:gilbert_labvispro2/nomor7.dart' as nomor7;
 import 'package:gilbert_labvispro2/nomor8.dart' as nomor8;
-import 'package:gilbert_labvispro2/nomor9/nomor9.dart' as nomor9;
+import 'package:gilbert_labvispro2/nomor9.dart' as nomor9;
 import 'package:gilbert_labvispro2/nomor10.dart' as nomor10;
 import 'package:gilbert_labvispro2/nomor11.dart' as nomor11;
-import 'package:gilbert_labvispro2/nomor15/nomor15.dart' as nomor15;
+import 'package:gilbert_labvispro2/nomor15.dart' as nomor15;
 
 void main(List<String> arguments) {
   try {
