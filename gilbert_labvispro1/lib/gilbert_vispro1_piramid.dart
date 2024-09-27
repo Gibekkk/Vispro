@@ -1,6 +1,7 @@
 import 'dart:io';
 
 piramid(int iteratorJ, int length, int lastOrder, var dataArr) {
+  (length > 40) ? length = 40 : length;
   int i = 0;
   int order = lastOrder;
   String text = "";

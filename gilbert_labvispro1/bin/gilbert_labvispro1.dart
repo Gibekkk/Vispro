@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:io';
-import 'package:gilbert_labvispro1/gilbert_vispro1_piramid.dart' as piramidRunner;
+import 'package:gilbert_labvispro1/gilbert_vispro1_piramid.dart'
+    as piramidRunner;
 
 void main(List<String> arguments) {
   try {
@@ -15,6 +16,7 @@ void main(List<String> arguments) {
     3. Shuffle
     Masukkan Pilihan: """);
     int? pilihan = int.parse(stdin.readLineSync()!);
+    Stopwatch stopwatch = new Stopwatch()..start();
     switch (pilihan) {
       case 1:
         arrayNumber = ulangan(arrayNumber, arrayNumber.length, 0, "sort");
@@ -30,8 +32,9 @@ void main(List<String> arguments) {
     }
     print("\nHasil: ");
     ulangan(arrayNumber, 0, 0, "print");
+    stdout.write('Proses Eksekusi: ${stopwatch.elapsed}');
 
-    stdout.write("""\nPilihan:
+    stdout.write("""\n\nPilihan:
     1. Unordered Pyramid
     2. Ordered Pyramid
     Masukkan Pilihan: """);
@@ -40,13 +43,16 @@ void main(List<String> arguments) {
     int? piramidLength = int.parse(stdin.readLineSync()!);
     switch (piramid) {
       case 1:
-        piramidRunner.piramid(0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle"));
+        piramidRunner.piramid(
+            0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle"));
         break;
       case 2:
-        piramidRunner.piramid(0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "sort"));
+        piramidRunner.piramid(
+            0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "sort"));
         break;
       default:
-        piramidRunner.piramid(0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle"));
+        piramidRunner.piramid(
+            0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle"));
     }
   } on Exception catch (e) {
     stderr.write("Error: ${e}");
