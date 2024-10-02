@@ -47,15 +47,14 @@ utama(var arrayNumber) {
       arrayNumber = ulangan(arrayNumber, 0, 0,
           "shuffle"); // Memanggil fungsi ulangan untuk melakukan shuffle
       break; // Keluar dari switch case
-    case 4: // Jika pilihan adalah 4
-      ulang = 0; // Mengatur ulang menjadi 0
+    case 4:
+      ulang = 0;
     default: // Jika pilihan tidak sesuai dengan case yang ada
       arrayNumber = ulangan(arrayNumber, arrayNumber.length, 0,
           "sort"); // Memanggil fungsi ulangan untuk melakukan sorting
   }
   switch (ulang) {
-    // Switch case untuk menangani variabel ulang
-    case 1: // Jika ulang adalah 1
+    case 1:
       print("\nHasil: "); // Menulis pesan ke stdout
       ulangan(arrayNumber, 0, 0,
           "print"); // Memanggil fungsi ulangan untuk mencetak hasil
@@ -82,9 +81,9 @@ utama(var arrayNumber) {
           piramidRunner.piramid( // Memanggil fungsi piramid dari piramidRunner
               0, piramidLength, 0, ulangan(arrayNumber, 0, 0, "shuffle")); // Memanggil fungsi ulangan untuk melakukan shuffle
       }
-      break; // Keluar dari switch case
+      break;
   }
-  (ulang == 1) ? utama(arrayNumber) : print("Bye Bye"); // Memanggil fungsi utama jika ulang adalah 1, jika tidak, menulis pesan "Bye Bye"
+  (ulang == 1) ? utama(arrayNumber) : print("Bye Bye");
 }
 
 ulangan(var data, int totalRepeat, int defaultIndex, String tipeUlangan) {
