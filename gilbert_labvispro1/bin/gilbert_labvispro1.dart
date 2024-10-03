@@ -1,6 +1,6 @@
 import 'dart:math'; // Mengimpor library dart:math untuk menggunakan fungsi matematika
 import 'dart:io'; // Mengimpor library dart:io untuk menggunakan fungsi input/output
-import 'package:gilbert_labvispro1/gilbert_vispro1_piramid.dart' // Mengimpor package gilbert_labvispro1/gilbert_vispro1_piramid.dart
+import '../lib/gilbert_vispro1_piramid.dart' // Mengimpor ../lib/gilbert_vispro1_piramid.dart
     as piramidRunner; // Memberi alias piramidRunner untuk package yang diimpor
 
 void main(List<String> arguments) {
