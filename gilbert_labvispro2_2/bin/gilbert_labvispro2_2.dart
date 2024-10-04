@@ -1,5 +1,6 @@
 import '../lib/colorCode.dart' as color;
 import 'kembangApi.dart' as firework;
+import 'hbd_ano.dart' as hbd_ano;
 import 'dart:async';
 import 'dart:math';
 
@@ -69,4 +70,7 @@ void main() async {
     await firework.kembangApi(randomX, getScreenSize()[1]-randomY, randomColor);
   }
   clearScreen();
+
+  await hbd_ano.animateAsciiArt("HBD ANO");
+  firework.moveTo(getScreenSize()[0], getScreenSize()[1]);
 }
