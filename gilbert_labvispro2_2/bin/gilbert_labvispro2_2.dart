@@ -1,4 +1,5 @@
 import '../lib/colorCode.dart' as color;
+import 'kembangApi.dart' as firework;
 import 'dart:async';
 import 'dart:math';
 
@@ -56,14 +57,16 @@ void main() async {
     int randomX = randomMax(getScreenSize()[0]);
     int randomY = random(minHeight, getScreenSize()[1] - minHeight);
     String randomColor = color.getRandomColor();
-    if(j == 0){
+    if (j == 0) {
       randomX = getScreenSize()[0] ~/ 2;
       randomY = getScreenSize()[1] ~/ 2;
     }
     for (int i = 0; i < randomY; i++) {
-      printCoords(randomColor+text+color.RESET, randomX, i);
+      printCoords(randomColor + text + color.RESET, randomX, i);
       await delay(100);
       clearScreen();
     }
+    await firework.kembangApi(randomX, randomY, randomColor);
   }
+  clearScreen();
 }
