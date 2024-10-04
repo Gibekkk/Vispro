@@ -65,7 +65,7 @@ void main() async {
     }
     for (int i = 0; i < randomY; i++) {
       printCoords(randomColor[0] + text + color.RESET, randomX, i);
-      await delay(100);
+      await delay(50);
       clearScreen();
     }
     await firework.kembangApi(randomX, getScreenSize()[1]-randomY, randomColor);
@@ -73,5 +73,5 @@ void main() async {
   clearScreen();
 
   await hbd_ano.animateAsciiArt("HBD PAK ANO");
-  firework.moveTo(getScreenSize()[0], getScreenSize()[1]);
+  firework.moveTo(getScreenSize()[0], getScreenSize()[1]-1);
 }

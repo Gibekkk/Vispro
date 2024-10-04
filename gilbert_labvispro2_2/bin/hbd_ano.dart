@@ -110,6 +110,6 @@ Future<void> animateAsciiArt(String text) async {
       moveCursor(centerX, row + i); // Move cursor to center
       stdout.writeln(lines[i]); // Write each line of ASCII art
     }
-    await Future.delayed(Duration(milliseconds: 300)); // Delay between frames
+    await Future.delayed(Duration(milliseconds: 100)); // Delay between frames
   }
 }

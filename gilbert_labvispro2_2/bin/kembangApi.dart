@@ -4,7 +4,7 @@ import 'gilbert_labvispro2_2.dart' as main;
 
 final Map<String, List<String>> fireworkFrame = {
   '1': [
-    // Frame pertama: Kembang api muncul
+    // Frame pertama: Kembang api muncul (kecil)
     '       *       ',
     '      * *      ',
     '     * * *     ',
@@ -12,22 +12,79 @@ final Map<String, List<String>> fireworkFrame = {
     '       *       ',
   ],
   '2': [
-    // Frame kedua: Kembang api meledak
+    // Frame kedua: Kembang api mulai membesar
     '       *       ',
     '     * * *     ',
-    '   * * * * *   ',
+    '    * * * *    ',
     '     * * *     ',
     '       *       ',
   ],
   '3': [
-    // Frame ketiga: Ledakan penuh
+    // Frame ketiga: Ledakan sedang terjadi
+    '      * *      ',
+    '    * * * *    ',
+    '   * * * * *   ',
+    '    * * * *    ',
+    '      * *      ',
+  ],
+  '4': [
+    // Frame keempat: Ledakan lebih intens
+    '      * *      ',
+    '   * * * * *   ',
+    '  * * * * * *  ',
+    '   * * * * *   ',
+    '      * *      ',
+  ],
+  '5': [
+    // Frame kelima: Puncak ledakan
+    '     * * *     ',
+    '  * * * * * *  ',
+    ' * * * * * * * ',
+    '  * * * * * *  ',
+    '     * * *     ',
+  ],
+  '6': [
+    // Frame keenam: Mulai meredup dari puncak
     '      * * *      ',
     '   * * * * * *   ',
-    ' * * * * * * * * ',
+    '  * * * * * * *  ',
     '   * * * * * *   ',
     '      * * *      ',
   ],
+  '7': [
+    // Frame ketujuh: Ledakan mulai menghilang
+    '       * *       ',
+    '     * * * *     ',
+    '    * * * * *    ',
+    '     * * * *     ',
+    '       * *       ',
+  ],
+  '8': [
+    // Frame kedelapan: Semakin menghilang
+    '       * *       ',
+    '     * * * *     ',
+    '     * * * *     ',
+    '     * * * *     ',
+    '       * *       ',
+  ],
+  '9': [
+    // Frame kesembilan: Hampir hilang
+    '       *         ',
+    '      * *        ',
+    '     * * *       ',
+    '      * *        ',
+    '       *         ',
+  ],
+  '10': [
+    // Frame kesepuluh: Menghilang sepenuhnya
+    '                 ',
+    '                 ',
+    '                 ',
+    '                 ',
+    '                 ',
+  ],
 };
+
 
 // Function buat pindahin kursor ke koordinat tertentu
 void moveTo(int row, int col) {
@@ -41,8 +98,8 @@ void printFireworkFrame(
   String bgColor =
       color.getBackgroundColor(colorSelects[1]); // Ambil warna latar belakang
   String fontColor =
-      frameKey == '2' ? color.RESET + colorSelects[1] : bgColor + color.BLACK;
-  if (frameKey == '2') bgColor = color.RESET;
+      int.parse(frameKey) % 2 == 0 ? color.RESET + colorSelects[1] : bgColor + color.BLACK;
+  if (int.parse(frameKey) % 2 == 0) bgColor = color.RESET;
   for (var i = 0; i < frame.length; i++) {
     moveTo(centerY - (frame.length ~/ 2) + i, centerX - (frame[i].length ~/ 2));
     String line = frame[i];
@@ -79,7 +136,7 @@ Future<void> kembangApi(centerX, centerY, colorSelects) async {
       changeBackground(fontColor);
     }
     printFireworkFrame(i.toString(), centerX, centerY, colorSelects);
-    await main.delay(300); // Delay 300 milidetik
+    await main.delay(100); // Delay 300 milidetik
     clearScreen();
   }
 }
