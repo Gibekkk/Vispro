@@ -42,7 +42,29 @@ const String BG_BRIGHT_MAGENTA = '\x1B[105m';
 const String BG_BRIGHT_CYAN = '\x1B[106m';
 const String BG_BRIGHT_WHITE = '\x1B[107m';
 
-String getRandomColor() {
+getRandomColor() {
   List<String> colors = [RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE];
-  return colors[Random().nextInt(colors.length)];
+  String selectedColor = colors[Random().nextInt(colors.length)];
+  return [BG_BLACK+selectedColor, selectedColor];
+}
+
+String getBackgroundColor(String textColor) {
+  switch (textColor) {
+    case RED:
+      return BG_BRIGHT_RED; // Background terang buat warna merah
+    case GREEN:
+      return BG_BRIGHT_GREEN; // Background terang buat warna hijau
+    case YELLOW:
+      return BG_BRIGHT_YELLOW; // Background terang buat warna kuning
+    case BLUE:
+      return BG_BRIGHT_BLUE; // Background terang buat warna biru
+    case MAGENTA:
+      return BG_BRIGHT_MAGENTA; // Background terang buat warna magenta
+    case CYAN:
+      return BG_BRIGHT_CYAN; // Background terang buat warna cyan
+    case WHITE:
+      return BG_BRIGHT_WHITE; // Background terang buat warna putih
+    default:
+      return RESET; // Kembali ke reset kalo warna gak dikenali
+  }
 }

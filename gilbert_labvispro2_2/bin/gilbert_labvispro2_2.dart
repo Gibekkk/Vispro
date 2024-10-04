@@ -53,20 +53,20 @@ void main() async {
 
   clearScreen();
   for (int j = 0; j < jumlahKembangApi; j++) {
-    int minHeight = getScreenSize()[1] ~/ 3;
+    int minHeight = getScreenSize()[1] ~/ 5;
     int randomX = randomMax(getScreenSize()[0]);
     int randomY = random(minHeight, getScreenSize()[1] - minHeight);
-    String randomColor = color.getRandomColor();
+    List<String> randomColor = color.getRandomColor();
     if (j == 0) {
       randomX = getScreenSize()[0] ~/ 2;
       randomY = getScreenSize()[1] ~/ 2;
     }
     for (int i = 0; i < randomY; i++) {
-      printCoords(randomColor + text + color.RESET, randomX, i);
+      printCoords(randomColor[0] + text + color.RESET, randomX, i);
       await delay(100);
       clearScreen();
     }
-    await firework.kembangApi(randomX, randomY, randomColor);
+    await firework.kembangApi(randomX, getScreenSize()[1]-randomY, randomColor);
   }
   clearScreen();
 }

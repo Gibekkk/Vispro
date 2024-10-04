@@ -72,20 +72,30 @@ void clearScreen() {
   stdout.write('\x1B[2J\x1B[0;0H');
 }
 
-Future<void> kembangApi(centerX, centerY, String colorSelect) async {
+Future<void> kembangApi(centerX, centerY, colorSelects) async {
+  String colorSelect = colorSelects[0];
+  String fontColor = colorSelects[1];
   clearScreen();
 
   // Frame 1: Kembang api naik (titik pusat sebelum ledak)
+  print(color.getBackgroundColor(fontColor));
+  clearScreen();
   printFrame1(centerX, centerY, colorSelect);
-  await main.delay(500); // Delay 500 milidetik
+  await main.delay(300); // Delay 500 milidetik
 
   // Frame 2: Kembang api mulai meledak
   clearScreen();
+  print(color.BG_BLACK);
+  clearScreen();
   printFrame2(centerX, centerY, colorSelect);
-  await main.delay(500);
+  await main.delay(300);
 
   // Frame 3: Ledakan penuh
   clearScreen();
+  print(color.getBackgroundColor(fontColor));
+  clearScreen();
   printFrame3(centerX, centerY, colorSelect);
-  await main.delay(500);
+  await main.delay(300);
+  print(color.BG_BLACK+color.RESET);
+  clearScreen();
 }
