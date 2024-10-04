@@ -137,7 +137,7 @@ Future<void> kembangApi(centerX, centerY, colorSelects) async {
     // }
     changeBackground(fontColor);
     printFireworkFrame(i.toString(), centerX, centerY, colorSelects);
-    await main.delay(100); // Delay 300 milidetik
+    await main.delay(1000 ~/ fireworkFrame.length); // Delay 300 milidetik
     // clearScreen();
   }
 }
