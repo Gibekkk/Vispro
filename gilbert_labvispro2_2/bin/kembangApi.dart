@@ -35,6 +35,8 @@ void moveTo(int row, int col) {
 void printFireworkFrame(String frameKey, int centerX, int centerY, colorSelects) {
   List<String> frame = fireworkFrame[frameKey] ?? [];
   String bgColor = color.getBackgroundColor(colorSelects[1]); // Ambil warna latar belakang
+  String fontColor = frameKey == '2' ? color.RESET + colorSelects[1] : bgColor + color.BLACK;
+  if(frameKey == '2') bgColor = color.RESET;
   for (var i = 0; i < frame.length; i++) {
     moveTo(centerY - (frame.length ~/ 2) + i, centerX - (frame[i].length ~/ 2));
     String line = frame[i];
@@ -42,7 +44,7 @@ void printFireworkFrame(String frameKey, int centerX, int centerY, colorSelects)
       if (char == ' ') {
         stdout.write(bgColor + ' ' + color.RESET); // Gunakan warna latar belakang untuk spasi
       } else {
-        stdout.write(bgColor + color.BLACK + char + color.RESET); // Gunakan warna untuk karakter
+        stdout.write(fontColor + char + color.RESET); // Gunakan warna untuk karakter
       }
     }
   }
