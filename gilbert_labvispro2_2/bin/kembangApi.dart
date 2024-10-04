@@ -4,25 +4,25 @@ import 'gilbert_labvispro2_2.dart' as main;
 
 final Map<String, List<String>> fireworkFrame = {
   '1': [ // Frame pertama: Kembang api muncul
-    '       |       ',
-    '      | |      ',
-    '     | | |     ',
-    '      | |      ',
-    '       |       ',
+    '       *       ',
+    '      * *      ',
+    '     * * *     ',
+    '      * *      ',
+    '       *       ',
   ],
   '2': [ // Frame kedua: Kembang api meledak
-    '       |       ',
-    '     | | |     ',
-    '   | | | | |   ',
-    '     | | |     ',
-    '       |       ',
+    '       *       ',
+    '     * * *     ',
+    '   * * * * *   ',
+    '     * * *     ',
+    '       *       ',
   ],
   '3': [ // Frame ketiga: Ledakan penuh
-    '      | | |      ',
-    '   | | | | | |   ',
-    ' | | | | | | | | ',
-    '   | | | | | |   ',
-    '      | | |      ',
+    '      * * *      ',
+    '   * * * * * *   ',
+    ' * * * * * * * * ',
+    '   * * * * * *   ',
+    '      * * *      ',
   ],
 };
 
@@ -35,7 +35,6 @@ void moveTo(int row, int col) {
 void printFireworkFrame(String frameKey, int centerX, int centerY, colorSelects) {
   List<String> frame = fireworkFrame[frameKey] ?? [];
   String bgColor = color.getBackgroundColor(colorSelects[1]); // Ambil warna latar belakang
-  String colorSelect = colorSelects[0];
   for (var i = 0; i < frame.length; i++) {
     moveTo(centerY - (frame.length ~/ 2) + i, centerX - (frame[i].length ~/ 2));
     String line = frame[i];
@@ -43,7 +42,7 @@ void printFireworkFrame(String frameKey, int centerX, int centerY, colorSelects)
       if (char == ' ') {
         stdout.write(bgColor + ' ' + color.RESET); // Gunakan warna latar belakang untuk spasi
       } else {
-        stdout.write(colorSelect + char + color.RESET); // Gunakan warna untuk karakter
+        stdout.write(bgColor + color.BLACK + char + color.RESET); // Gunakan warna untuk karakter
       }
     }
   }
