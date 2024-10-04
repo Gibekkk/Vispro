@@ -48,6 +48,37 @@ int randomMax(int max) {
 void main() async {
   clearScreen();
   String text = "|";
+  String namaOrang = "hbd ";
+  stdout.write("""Pilihan Orang: 
+    1. Pak Arnold
+    2. Pak Kasmir
+    3. Bu Citra
+    4. Pak David
+    5. Pak Octavian
+    6. Ko Reinaldo
+    Masukkan Pilihan: """);
+  switch((int.parse(stdin.readLineSync()!))){
+    case 2:
+      namaOrang += "pak kasmir";
+      break;
+    case 3:
+      namaOrang += "bu citra";
+      break;
+    case 4:
+      namaOrang += "pak david";
+      break;
+    case 5:
+      namaOrang += "pak octa";
+      break;
+    case 6:
+      namaOrang += "ko rei";
+      break;
+    case 1:
+    default:
+      namaOrang += "pak ano";
+      break;
+  }
+  clearScreen();
   stdout.write("Masukkan Jumlah kembang Api: ");
   int? jumlahKembangApi = (int.parse(stdin.readLineSync()!));
   jumlahKembangApi = jumlahKembangApi < 1 ? 1 : jumlahKembangApi;
@@ -72,6 +103,6 @@ void main() async {
   }
   clearScreen();
 
-  await hbd_ano.animateAsciiArt("HBD PAK ANO");
+  await hbd_ano.animateAsciiArt(namaOrang);
   firework.moveTo(getScreenSize()[0], getScreenSize()[1]-1);
 }

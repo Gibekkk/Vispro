@@ -1,14 +1,13 @@
 import 'dart:io';
 import 'dart:async';
 
-// ASCII art for letters H, B, D, A, N, O
 final Map<String, List<String>> asciiLetters = {
-  'H': [
-    'H   H',
-    'H   H',
-    'HHHHH',
-    'H   H',
-    'H   H',
+  'A': [
+    '  A  ',
+    ' A A ',
+    'AAAAA',
+    'A   A',
+    'A   A',
   ],
   'B': [
     'BBBB ',
@@ -17,6 +16,13 @@ final Map<String, List<String>> asciiLetters = {
     'B   B',
     'BBBB ',
   ],
+  'C': [
+    ' CCCC',
+    'C    ',
+    'C    ',
+    'C    ',
+    ' CCCC',
+  ],
   'D': [
     'DDDD ',
     'D   D',
@@ -24,26 +30,68 @@ final Map<String, List<String>> asciiLetters = {
     'D   D',
     'DDDD ',
   ],
-  'A': [
-    '  A  ',
-    ' A A ',
-    'AAAAA',
-    'A   A',
-    'A   A',
+  'E': [
+    'EEEEE',
+    'E    ',
+    'EEEEE',
+    'E    ',
+    'EEEEE',
   ],
-  'P': [
-    'PPPPP',
-    'P   P',
-    'PPPP ',
-    'P    ',
-    'P    ',
+  'F': [
+    'FFFFF',
+    'F    ',
+    'FFFF ',
+    'F    ',
+    'F    ',
+  ],
+  'G': [
+    ' GGGG',
+    'G    ',
+    'G  GG',
+    'G   G',
+    ' GGGG',
+  ],
+  'H': [
+    'H   H',
+    'H   H',
+    'HHHHH',
+    'H   H',
+    'H   H',
+  ],
+  'I': [
+    'IIIII',
+    '  I  ',
+    '  I  ',
+    '  I  ',
+    'IIIII',
+  ],
+  'J': [
+    'JJJJJ',
+    '    J',
+    '    J',
+    'J   J',
+    ' JJJ ',
   ],
   'K': [
     'K   K',
-    'K K  ',
+    'K  K ',
     'KK   ',
-    'K K  ',
+    'K  K ',
     'K   K',
+  ],
+  'L': [
+    'L    ',
+    'L    ',
+    'L    ',
+    'L    ',
+    'LLLLL',
+  ],
+  'M': [
+    'M   M',
+    'MM MM',
+    'M M M',
+    'M   M',
+    'M   M',
   ],
   'N': [
     'N   N',
@@ -59,14 +107,92 @@ final Map<String, List<String>> asciiLetters = {
     'O   O',
     ' OOO ',
   ],
-  ' ':[
+  'P': [
+    'PPPPP',
+    'P   P',
+    'PPPP ',
+    'P    ',
+    'P    ',
+  ],
+  'Q': [
+    ' QQQ ',
+    'Q   Q',
+    'Q   Q',
+    'Q  QQ',
+    ' QQQQ',
+  ],
+  'R': [
+    'RRRR ',
+    'R   R',
+    'RRRR ',
+    'R R  ',
+    'R  RR',
+  ],
+  'S': [
+    ' SSSS',
+    'S    ',
+    ' SSS ',
+    '    S',
+    'SSSS ',
+  ],
+  'T': [
+    'TTTTT',
+    '  T  ',
+    '  T  ',
+    '  T  ',
+    '  T  ',
+  ],
+  'U': [
+    'U   U',
+    'U   U',
+    'U   U',
+    'U   U',
+    ' UUU ',
+  ],
+  'V': [
+    'V   V',
+    'V   V',
+    'V   V',
+    ' V V ',
+    '  V  ',
+  ],
+  'W': [
+    'W   W',
+    'W   W',
+    'W W W',
+    'WW WW',
+    'W   W',
+  ],
+  'X': [
+    'X   X',
+    ' X X ',
+    '  X  ',
+    ' X X ',
+    'X   X',
+  ],
+  'Y': [
+    'Y   Y',
+    ' Y Y ',
+    '  Y  ',
+    '  Y  ',
+    '  Y  ',
+  ],
+  'Z': [
+    'ZZZZZ',
+    '   Z ',
+    '  Z  ',
+    ' Z   ',
+    'ZZZZZ',
+  ],
+  ' ': [
     '     ',
     '     ',
     '     ',
     '     ',
     '     ',
-  ]
+  ],
 };
+
 
 // Function to clear the screen
 void clearScreen() {
@@ -80,6 +206,7 @@ void moveCursor(int x, int y) {
 
 // Function to display repeated ASCII letters centered and with animation from bottom to top
 Future<void> animateAsciiArt(String text) async {
+  text = text.toUpperCase();
   List<String> lines = List.filled(5, ''); // Create 5 empty lines for ASCII art rows
   
   // Prepare ASCII art for each letter
