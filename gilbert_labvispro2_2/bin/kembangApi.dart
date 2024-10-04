@@ -2,69 +2,51 @@ import 'dart:io';
 import '../lib/colorCode.dart' as color;
 import 'gilbert_labvispro2_2.dart' as main;
 
+final Map<String, List<String>> fireworkFrame = {
+  '1': [ // Frame pertama: Kembang api muncul
+    '       |       ',
+    '      | |      ',
+    '     | | |     ',
+    '      | |      ',
+    '       |       ',
+  ],
+  '2': [ // Frame kedua: Kembang api meledak
+    '       |       ',
+    '     | | |     ',
+    '   | | | | |   ',
+    '     | | |     ',
+    '       |       ',
+  ],
+  '3': [ // Frame ketiga: Ledakan penuh
+    '      | | |      ',
+    '   | | | | | |   ',
+    ' | | | | | | | | ',
+    '   | | | | | |   ',
+    '      | | |      ',
+  ],
+};
+
 // Function buat pindahin kursor ke koordinat tertentu
 void moveTo(int row, int col) {
   stdout.write('\x1B[${row};${col}H');
 }
 
-// Function buat nge-print frame 1 (kembang api sebelum ledak)
-void printFrame1(int centerX, int centerY, String colorSelect) {
-  moveTo(centerY, centerX);
-  stdout.write('${colorSelect}|${color.RESET}');
-}
-
-// Function buat nge-print frame 2 (kembang api mulai meledak, versi gede)
-void printFrame2(int centerX, int centerY, String colorSelect) {
-  moveTo(centerY - 2, centerX);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 2, centerX);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY, centerX - 2);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY, centerX + 2);
-  stdout.write('${colorSelect}*${color.RESET}');
-  
-  // Tambah efek kecil di sekitar
-  moveTo(centerY - 1, centerX - 1);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY - 1, centerX + 1);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 1, centerX - 1);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 1, centerX + 1);
-  stdout.write('${colorSelect}*${color.RESET}');
-}
-
-// Function buat nge-print frame 3 (ledakan penuh, versi gede)
-void printFrame3(int centerX, int centerY, String colorSelect) {
-  moveTo(centerY - 3, centerX);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 3, centerX);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY, centerX - 3);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY, centerX + 3);
-  stdout.write('${colorSelect}*${color.RESET}');
-  
-  // Pojok kanan kiri
-  moveTo(centerY - 2, centerX - 2);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY - 2, centerX + 2);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 2, centerX - 2);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 2, centerX + 2);
-  stdout.write('${colorSelect}*${color.RESET}');
-  
-  // Lingkaran luar
-  moveTo(centerY - 1, centerX - 3);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY - 1, centerX + 3);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 1, centerX - 3);
-  stdout.write('${colorSelect}*${color.RESET}');
-  moveTo(centerY + 1, centerX + 3);
-  stdout.write('${colorSelect}*${color.RESET}');
+// Function buat nge-print frame menggunakan fireworkFrame
+void printFireworkFrame(String frameKey, int centerX, int centerY, colorSelects) {
+  List<String> frame = fireworkFrame[frameKey] ?? [];
+  String bgColor = color.getBackgroundColor(colorSelects[1]); // Ambil warna latar belakang
+  String colorSelect = colorSelects[0];
+  for (var i = 0; i < frame.length; i++) {
+    moveTo(centerY - (frame.length ~/ 2) + i, centerX - (frame[i].length ~/ 2));
+    String line = frame[i];
+    for (var char in line.split('')) {
+      if (char == ' ') {
+        stdout.write(bgColor + ' ' + color.RESET); // Gunakan warna latar belakang untuk spasi
+      } else {
+        stdout.write(colorSelect + char + color.RESET); // Gunakan warna untuk karakter
+      }
+    }
+  }
 }
 
 // Function buat nge-clear layar
@@ -73,29 +55,28 @@ void clearScreen() {
 }
 
 Future<void> kembangApi(centerX, centerY, colorSelects) async {
-  String colorSelect = colorSelects[0];
   String fontColor = colorSelects[1];
   clearScreen();
 
-  // Frame 1: Kembang api naik (titik pusat sebelum ledak)
+  // Frame 1: Kembang api muncul
   print(color.getBackgroundColor(fontColor));
   clearScreen();
-  printFrame1(centerX, centerY, colorSelect);
-  await main.delay(300); // Delay 500 milidetik
+  printFireworkFrame('1', centerX, centerY, colorSelects);
+  await main.delay(300); // Delay 300 milidetik
 
   // Frame 2: Kembang api mulai meledak
   clearScreen();
   print(color.BG_BLACK);
   clearScreen();
-  printFrame2(centerX, centerY, colorSelect);
+  printFireworkFrame('2', centerX, centerY, colorSelects);
   await main.delay(300);
 
   // Frame 3: Ledakan penuh
   clearScreen();
   print(color.getBackgroundColor(fontColor));
   clearScreen();
-  printFrame3(centerX, centerY, colorSelect);
+  printFireworkFrame('3', centerX, centerY, colorSelects);
   await main.delay(300);
-  print(color.BG_BLACK+color.RESET);
+  print(color.BG_BLACK + color.RESET);
   clearScreen();
 }

@@ -31,6 +31,20 @@ final Map<String, List<String>> asciiLetters = {
     'A   A',
     'A   A',
   ],
+  'P': [
+    'PPPPP',
+    'P   P',
+    'PPPP ',
+    'P    ',
+    'P    ',
+  ],
+  'K': [
+    'K   K',
+    'K K  ',
+    'KK   ',
+    'K K  ',
+    'K   K',
+  ],
   'N': [
     'N   N',
     'NN  N',

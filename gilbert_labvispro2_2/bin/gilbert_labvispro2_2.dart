@@ -55,7 +55,8 @@ void main() async {
   clearScreen();
   for (int j = 0; j < jumlahKembangApi; j++) {
     int minHeight = getScreenSize()[1] ~/ 5;
-    int randomX = randomMax(getScreenSize()[0]);
+    int minWidth = getScreenSize()[0] ~/ 5;
+    int randomX = random(minWidth, getScreenSize()[0] - minWidth);
     int randomY = random(minHeight, getScreenSize()[1] - minHeight);
     List<String> randomColor = color.getRandomColor();
     if (j == 0) {
@@ -71,6 +72,6 @@ void main() async {
   }
   clearScreen();
 
-  await hbd_ano.animateAsciiArt("HBD ANO");
+  await hbd_ano.animateAsciiArt("HBD PAK ANO");
   firework.moveTo(getScreenSize()[0], getScreenSize()[1]);
 }
