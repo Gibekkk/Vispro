@@ -39,6 +39,32 @@ Node insertNodeAtPosition(Node head, Node newNode, int position) {
   return head; // Balikin head baru
 }
 
+// Fungsi buat tukar node ke posisi tertentu
+Node swapNode(Node head, Node node1, Node node2) {
+  if (node1 == head) {
+    head = node2;
+  }
+  if (node2 == head) {
+    head = node1;
+  }
+  Node? swapper = node1.next;
+  node1.next = node2.next;
+  node2.next = swapper;
+
+  // Mulai dari head buat nyari posisi yang diinginkan
+  Node? currentNode = head;
+    while (currentNode!.next != null) {
+      if(currentNode.next == node1){
+        currentNode.next = node2;
+      }
+      else if(currentNode.next == node2){
+        currentNode.next = node1;
+      }
+      currentNode = currentNode.next;
+    }
+  return head; // Balikin head baru
+}
+
 void main() {
   // Buat beberapa node (elemen linked list)
   Node node1 = new Node(7);
@@ -52,7 +78,7 @@ void main() {
   node3.next = node4;
 
   // Print list sebelum insert
-  stdout.write('Original list:');
+  stdout.write('Original list: ');
   traverseAndPrint(node1);
 
   // Insert node baru dengan value 97 di posisi 2
@@ -60,6 +86,12 @@ void main() {
   node1 = insertNodeAtPosition(node1, newNode, 2);
 
   // Print list setelah insert
-  stdout.write('\nAfter insertion:');
+  stdout.write('\nAfter insertion: ');
+  traverseAndPrint(node1);
+
+  node1 = swapNode(node1, node3, node1);
+
+  // Print list setelah insert
+  stdout.write('\nAfter Swapping: ');
   traverseAndPrint(node1);
 }
