@@ -43,7 +43,7 @@ const String BG_BRIGHT_CYAN = '\x1B[106m';
 const String BG_BRIGHT_WHITE = '\x1B[107m';
 
 String getRandomColor(String exception) {
-  List<String> colors = [RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE];
+  List<String> colors = [RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN];
   colors.remove(exception);
   String selectedColor = colors[Random().nextInt(colors.length)];
   return selectedColor;

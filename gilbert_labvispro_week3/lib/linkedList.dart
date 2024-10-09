@@ -151,14 +151,21 @@ Node activateLoop(Node head) {
   return head;
 }
 
-Node craft() {
-  Node head = Node("G");
-  insertNodeAtPosition(head, Node("I"), 0);
-  insertNodeAtPosition(head, Node("L"), 0);
-  insertNodeAtPosition(head, Node("B"), 0);
-  insertNodeAtPosition(head, Node("E"), 0);
-  insertNodeAtPosition(head, Node("R"), 0);
-  insertNodeAtPosition(head, Node("T"), 0);
+Node craft(String text) {
+  var pattern = RegExp(r"^\s+$");
+  Node head = Node(text[0]);
+  if (!pattern.hasMatch(text)) {
+    for (int i = 1; i < text.length; i++) {
+      if (!pattern.hasMatch(head.data!)) {
+        if (!pattern.hasMatch(text[i]))
+          insertNodeAtPosition(head, Node(text[i]), 0);
+      } else {
+        head = Node(text[i]);
+      }
+    }
+  } else{
+    head = Node("?");
+  }
   activateLoop(head);
   return head;
 }
@@ -168,10 +175,17 @@ Node? getNext(Node node) {
 }
 
 void main() async {
-  Node head = craft();
+  clearScreen();
+  moveTo(0, 0);
+  stdout.write("Masukkan nama: ");
+  Node head = craft(stdin.readLineSync()!);
+  clearScreen();
+  moveTo(0, 0);
+  stdout.write("Masukkan jumlah perulangan: ");
+  int? ulang = int.parse(stdin.readLineSync()!);
   clearScreen();
   String selectedColor = color.RESET;
-  while (true) {
+  while (ulang! > 0) {
     Node? node = null;
     stdout.write(selectedColor);
     for (int j = 1; j <= getScreenSize()[1]; j++) {
@@ -195,5 +209,10 @@ void main() async {
       }
     }
     selectedColor = color.getRandomColor(selectedColor);
+    ulang -= 1;
   }
+  stdout.write(color.RESET);
+  clearScreen();
+  moveTo(0, 0);
+  stdout.write("Done :)");
 }
