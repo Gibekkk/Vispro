@@ -1,7 +1,8 @@
 import 'dart:io'; // Import library untuk input/output
 
 class Node {
-  int? data; // Data yang disimpan dalam node, nullable untuk keamanan jika tidak ada data
+  int?
+      data; // Data yang disimpan dalam node, nullable untuk keamanan jika tidak ada data
   Node? next; // Pointer ke node berikutnya, juga nullable
 
   Node(this.data); // Constructor untuk inisialisasi node dengan data
@@ -29,23 +30,22 @@ Node insertNodeAtPosition(Node head, Node newNode, int position) {
   // Mulai dari head untuk mencari posisi yang diinginkan
   Node? currentNode = head;
   int i = 1;
-  while (currentNode != null && i < position - 1) {
+  while (currentNode!.next != null && i < position - 1) {
     currentNode = currentNode.next; // Traverse ke posisi sebelumnya
     i++;
   }
 
   // Sisipkan node baru di posisi yang ditarget
-  if (currentNode != null) {
-    newNode.next = currentNode.next;
-    currentNode.next = newNode;
-  }
-  
+  newNode.next = currentNode.next;
+  currentNode.next = newNode;
+
   return head; // Mengembalikan head yang baru
 }
 
 // Fungsi untuk menukar node pada posisi tertentu
 Node swapNode(Node head, int pos1, int pos2) {
-  if (pos1 == pos2) return head; // Jika posisi yang ditukar sama, tidak perlu swap
+  if (pos1 == pos2)
+    return head; // Jika posisi yang ditukar sama, tidak perlu swap
 
   // Mencari node pada posisi pos1
   Node? prevNode1 = null;
@@ -95,7 +95,8 @@ Node swapNode(Node head, int pos1, int pos2) {
 // Fungsi untuk menghapus node pada posisi tertentu
 Node deleteNode(Node head, int position) {
   if (position == 1) {
-    return head.next ?? head; // Mengembalikan head baru setelah menghapus node pertama
+    return head.next ??
+        head; // Mengembalikan head baru setelah menghapus node pertama
   }
 
   // Mencari node pada posisi yang ingin dihapus
