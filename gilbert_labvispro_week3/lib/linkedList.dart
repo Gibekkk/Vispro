@@ -163,7 +163,7 @@ Node craft(String text) {
         head = Node(text[i]);
       }
     }
-  } else{
+  } else {
     head = Node("?");
   }
   activateLoop(head);
@@ -175,44 +175,52 @@ Node? getNext(Node node) {
 }
 
 void main() async {
-  clearScreen();
-  moveTo(0, 0);
-  stdout.write("Masukkan nama: ");
-  Node head = craft(stdin.readLineSync()!);
-  clearScreen();
-  moveTo(0, 0);
-  stdout.write("Masukkan jumlah perulangan: ");
-  int? ulang = int.parse(stdin.readLineSync()!);
-  clearScreen();
-  String selectedColor = color.RESET;
-  while (ulang! > 0) {
-    Node? node = null;
-    stdout.write(selectedColor);
-    for (int j = 1; j <= getScreenSize()[1]; j++) {
-      if (node == null) {
-        node = head;
-      }
-      if (j % 2 != 0) {
-        for (int i = 1; i <= getScreenSize()[0]; i++) {
-          moveTo(j, i);
-          stdout.write(node!.data);
-          node = getNext(node)!;
-          await delay(10);
+  try {
+    int delayDuration = 5;
+    clearScreen();
+    moveTo(0, 0);
+    stdout.write("Masukkan nama: ");
+    Node head = craft(stdin.readLineSync()!);
+    clearScreen();
+    moveTo(0, 0);
+    stdout.write("Masukkan jumlah perulangan: ");
+    int? ulang = int.parse(stdin.readLineSync()!);
+    clearScreen();
+    String selectedColor = color.RESET;
+    while (ulang! > 0) {
+      Node? node = null;
+      stdout.write(selectedColor);
+      for (int j = 1; j <= getScreenSize()[1]; j++) {
+        if (node == null) {
+          node = head;
         }
-      } else {
-        for (int i = getScreenSize()[0]; i > 0; i--) {
-          moveTo(j, i);
-          stdout.write(node!.data);
-          node = getNext(node)!;
-          await delay(10);
+        if (j % 2 != 0) {
+          for (int i = 1; i <= getScreenSize()[0]; i++) {
+            moveTo(j, i);
+            stdout.write(node!.data);
+            node = getNext(node)!;
+            await delay(delayDuration);
+          }
+        } else {
+          for (int i = getScreenSize()[0]; i > 0; i--) {
+            moveTo(j, i);
+            stdout.write(node!.data);
+            node = getNext(node)!;
+            await delay(delayDuration);
+          }
         }
       }
+      selectedColor = color.getRandomColor(selectedColor);
+      ulang -= 1;
     }
-    selectedColor = color.getRandomColor(selectedColor);
-    ulang -= 1;
+    stdout.write(color.RESET);
+    clearScreen();
+    moveTo(0, 0);
+    stdout.write("Done :)");
+  } on Exception catch (_) {
+    stdout.write(color.RESET);
+    clearScreen();
+    moveTo(0, 0);
+    stdout.write("Whoops? :(");
   }
-  stdout.write(color.RESET);
-  clearScreen();
-  moveTo(0, 0);
-  stdout.write("Done :)");
 }
