@@ -42,10 +42,11 @@ const String BG_BRIGHT_MAGENTA = '\x1B[105m';
 const String BG_BRIGHT_CYAN = '\x1B[106m';
 const String BG_BRIGHT_WHITE = '\x1B[107m';
 
-getRandomColor() {
+String getRandomColor(String exception) {
   List<String> colors = [RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE];
+  colors.remove(exception);
   String selectedColor = colors[Random().nextInt(colors.length)];
-  return [BG_BLACK+selectedColor, selectedColor];
+  return selectedColor;
 }
 
 String getBackgroundColor(String textColor) {

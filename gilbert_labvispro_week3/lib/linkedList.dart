@@ -170,25 +170,30 @@ Node? getNext(Node node) {
 void main() async {
   Node head = craft();
   clearScreen();
-  Node? node = null;
-  for (int j = 1; j <= getScreenSize()[1]; j++) {
-    if (node == null) {
-      node = head;
-    }
-    if (j % 2 != 0) {
-      for (int i = 1; i <= getScreenSize()[0]; i++) {
-        moveTo(j, i);
-        stdout.write(node!.data);
-        node = getNext(node)!;
-        await delay(10);
+  String selectedColor = color.RESET;
+  while (true) {
+    Node? node = null;
+    stdout.write(selectedColor);
+    for (int j = 1; j <= getScreenSize()[1]; j++) {
+      if (node == null) {
+        node = head;
       }
-    } else {
-      for (int i = getScreenSize()[0]; i > 0; i--) {
-        moveTo(j, i);
-        stdout.write(node!.data);
-        node = getNext(node)!;
-        await delay(10);
+      if (j % 2 != 0) {
+        for (int i = 1; i <= getScreenSize()[0]; i++) {
+          moveTo(j, i);
+          stdout.write(node!.data);
+          node = getNext(node)!;
+          await delay(10);
+        }
+      } else {
+        for (int i = getScreenSize()[0]; i > 0; i--) {
+          moveTo(j, i);
+          stdout.write(node!.data);
+          node = getNext(node)!;
+          await delay(10);
+        }
       }
     }
+    selectedColor = color.getRandomColor(selectedColor);
   }
 }
