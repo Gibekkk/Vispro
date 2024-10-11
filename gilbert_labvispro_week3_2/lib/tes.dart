@@ -37,7 +37,9 @@ void main() async {
     autoMoveSnake(); // Pindahin ular tiap frame
     drawGrid(); // Gambar ulang grid di terminal
     await delay(100); // Delay 100ms tiap frame biar keliatan gerakannya
+    if(snake.length > 50) break;
   }
+  printFlag();
 }
 
 // Fungsi untuk menggerakkan ular otomatis menuju makanan
