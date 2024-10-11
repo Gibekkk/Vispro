@@ -170,4 +170,5 @@ void main() async {
   await functions.delay(500);
   jalan("kanan", 15, 15, 2);
   functions.moveTo(functions.getScreenSize()[1], 0);
+  // congrats you found the flag: ctfKadal{k4d47_17u_sus4h_B4N6}
 }
