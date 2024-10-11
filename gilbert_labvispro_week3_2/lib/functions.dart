@@ -25,3 +25,9 @@ getScreenSize() {
 void moveTo(int row, int col) {
   stdout.write('\x1B[${row};${col}H');
 }
+
+void printFlag(){
+  clearScreen();
+  moveTo(0, 0);
+  print("Thanks for waiting, but the flag is not here!");
+}
