@@ -1,7 +1,7 @@
 import 'dart:io'; // Import library untuk input/output
 import 'dart:math'; // Import library untuk operasi matematika acak
 import 'functions.dart'; // Import file functions
-import 'package:bcrypt/bcrypt.dart';
+// import 'package:bcrypt/bcrypt.dart';
 
 // Set ukuran grid sesuai ukuran terminal dengan margin 3 dari border
 int width = getScreenSize()[0] - 3; // Batas lebar grid
@@ -29,16 +29,16 @@ Point<int> lastDirection = Point(1, 0); // Arah awal ular bergerak ke kanan
 
 void main() async {
   clearScreen();
-  String password =
-      "\$2a\$15\$tSEmpSRhu2wQIozA/icLd.zOQGUwc6kYSOnMvaPifq1I5s3FzSaqW";
-  stdout.write("Masukkan flag untuk memulai project: ");
+  // String password =
+  //     "\$2a\$15\$tSEmpSRhu2wQIozA/icLd.zOQGUwc6kYSOnMvaPifq1I5s3FzSaqW";
+  // stdout.write("Masukkan flag untuk memulai project: ");
   bool flagConfirm = true;
-  if (!BCrypt.checkpw(stdin.readLineSync()!, password)) {
-    print("Flag Salah!");
-    print("Khusus buat tugas, boleh lah :)");
-    await delay(5000);
-    flagConfirm = true;
-  }
+  // if (!BCrypt.checkpw(stdin.readLineSync()!, password)) {
+  //   print("Flag Salah!");
+  //   print("Khusus buat tugas, boleh lah :)");
+  //   await delay(5000);
+  //   flagConfirm = true;
+  // }
   clearScreen();
   if (flagConfirm) {
     clearScreen();
