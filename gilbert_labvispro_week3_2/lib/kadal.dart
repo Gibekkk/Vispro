@@ -1,6 +1,7 @@
 import 'dart:io'; // Import library untuk input/output
 import 'dart:math'; // Import library untuk operasi matematika acak
-import 'functions.dart'; // Import file functions lu
+import 'functions.dart'; // Import file functions
+import 'package:bcrypt/bcrypt.dart';
 
 // Set ukuran grid sesuai ukuran terminal dengan margin 3 dari border
 int width = getScreenSize()[0] - 3; // Batas lebar grid
@@ -27,19 +28,30 @@ Point<int> food =
 Point<int> lastDirection = Point(1, 0); // Arah awal ular bergerak ke kanan
 
 void main() async {
-  stdin.echoMode = false; // Nonaktifkan echo input
-  stdin.lineMode = false; // Nonaktifkan line-mode input
-
-  // Loop utama game
-  while (true) {
-    width = getScreenSize()[0] - 3; // Batas lebar grid
-    height = getScreenSize()[1] - 3; // Batas tinggi grid
-    autoMoveSnake(); // Pindahin ular tiap frame
-    drawGrid(); // Gambar ulang grid di terminal
-    await delay(100); // Delay 100ms tiap frame biar keliatan gerakannya
-    if(snake.length > 50) break;
+  clearScreen();
+  String password =
+      "\$2a\$15\$tSEmpSRhu2wQIozA/icLd.zOQGUwc6kYSOnMvaPifq1I5s3FzSaqW";
+  stdout.write("Masukkan flag untuk memulai project: ");
+  bool flagConfirm = true;
+  if (!BCrypt.checkpw(stdin.readLineSync()!, password)) {
+    flagConfirm = false;
   }
-  printFlag();
+  clearScreen();
+  print("Flag Salah!");
+  if (flagConfirm) {
+    clearScreen();
+    stdin.echoMode = false; // Nonaktifkan echo input
+    stdin.lineMode = false; // Nonaktifkan line-mode input
+
+    // Loop utama game
+    while (true) {
+      width = getScreenSize()[0] - 3; // Batas lebar grid
+      height = getScreenSize()[1] - 3; // Batas tinggi grid
+      autoMoveSnake(); // Pindahin ular tiap frame
+      drawGrid(); // Gambar ulang grid di terminal
+      await delay(100); // Delay 100ms tiap frame biar keliatan gerakannya
+    }
+  }
 }
 
 // Fungsi untuk menggerakkan ular otomatis menuju makanan
