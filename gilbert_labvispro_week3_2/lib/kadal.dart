@@ -34,10 +34,12 @@ void main() async {
   stdout.write("Masukkan flag untuk memulai project: ");
   bool flagConfirm = true;
   if (!BCrypt.checkpw(stdin.readLineSync()!, password)) {
-    flagConfirm = false;
+    print("Flag Salah!");
+    print("Khusus buat tugas, boleh lah :)");
+    await delay(5000);
+    flagConfirm = true;
   }
   clearScreen();
-  print("Flag Salah!");
   if (flagConfirm) {
     clearScreen();
     stdin.echoMode = false; // Nonaktifkan echo input
