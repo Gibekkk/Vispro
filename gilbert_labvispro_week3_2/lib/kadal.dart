@@ -145,8 +145,29 @@ void printKadalKiri(int yKepala, int xKepala, int panjangBadan) {
   stdout.write("#");
 }
 
-void main() {
+void jalan(String arah, int yKepala, int xKepala, int panjangBadan){
+  functions.clearScreen();
+  switch(arah){
+    case "kanan":
+      xKepala++;
+      break;
+    case "kiri":
+      xKepala--;
+      break;
+    case "atas":
+      yKepala--;
+      break;
+    case "bawah":
+      yKepala++;
+      break;
+  }
+  kadalMaker(panjangBadan, arah, xKepala, yKepala);
+}
+
+void main() async {
   functions.clearScreen();
   kadalMaker(2, "kiri", 15, 15);
+  await functions.delay(500);
+  jalan("kanan", 15, 15, 2);
   functions.moveTo(functions.getScreenSize()[1], 0);
 }
