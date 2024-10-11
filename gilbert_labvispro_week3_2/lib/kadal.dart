@@ -28,20 +28,21 @@ Point<int> food =
 Point<int> lastDirection = Point(1, 0); // Arah awal ular bergerak ke kanan
 
 void main() async {
-  clearScreen();
-  // String password =
+  clearScreen(); // Hapus layar terminal
+   // String password =
   //     "\$2a\$15\$tSEmpSRhu2wQIozA/icLd.zOQGUwc6kYSOnMvaPifq1I5s3FzSaqW";
   // stdout.write("Masukkan flag untuk memulai project: ");
-  bool flagConfirm = true;
+  bool flagConfirm = true; // Flag untuk konfirmasi awal game
   // if (!BCrypt.checkpw(stdin.readLineSync()!, password)) {
   //   print("Flag Salah!");
   //   print("Khusus buat tugas, boleh lah :)");
   //   await delay(5000);
   //   flagConfirm = true;
   // }
-  clearScreen();
-  if (flagConfirm) {
-    clearScreen();
+  clearScreen(); // Hapus layar terminal
+
+  if (flagConfirm) { // Cek apakah flagConfirm true
+    clearScreen(); // Hapus layar terminal
     stdin.echoMode = false; // Nonaktifkan echo input
     stdin.lineMode = false; // Nonaktifkan line-mode input
 
@@ -49,7 +50,10 @@ void main() async {
     while (true) {
       width = getScreenSize()[0] - 3; // Batas lebar grid
       height = getScreenSize()[1] - 3; // Batas tinggi grid
-      autoMoveSnake(); // Pindahin ular tiap frame
+      if (!autoMoveSnake()) { // Pindahin ular tiap frame, cek game over
+        print("Game Over!"); // Tampilkan pesan game over
+        break; // Keluar dari loop game
+      }
       drawGrid(); // Gambar ulang grid di terminal
       await delay(100); // Delay 100ms tiap frame biar keliatan gerakannya
     }
@@ -57,7 +61,7 @@ void main() async {
 }
 
 // Fungsi untuk menggerakkan ular otomatis menuju makanan
-void autoMoveSnake() {
+bool autoMoveSnake() {
   final head = snake.first; // Ambil posisi kepala ular
 
   // Cari langkah selanjutnya dengan pathfinding menuju makanan
@@ -69,6 +73,11 @@ void autoMoveSnake() {
     lastDirection =
         Point(nextMove.x - head.x, nextMove.y - head.y); // Simpan arah gerak
 
+    // Cek apakah ular nabrak tembok atau badan sendiri
+    if (nextMove.x < 0 || nextMove.x >= width || nextMove.y < 0 || nextMove.y >= height || snake.sublist(1).contains(nextMove)) {
+      return false; // Game over, balik false
+    }
+
     if (nextMove == food) {
       // Kalau nextMove ketemu makanan
       placeFood(); // Taruh makanan di lokasi baru
@@ -76,6 +85,7 @@ void autoMoveSnake() {
       snake.removeLast(); // Kalau gak makan, hapus ekor (gerak ular)
     }
   }
+  return true; // Kembalikan true kalau game masih lanjut
 }
 
 // Pathfinding dengan logika anti muter balik
