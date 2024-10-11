@@ -29,7 +29,7 @@ Point<int> lastDirection = Point(1, 0); // Arah awal ular bergerak ke kanan
 
 void main() async {
   clearScreen(); // Hapus layar terminal
-   // String password =
+  // String password =
   //     "\$2a\$15\$tSEmpSRhu2wQIozA/icLd.zOQGUwc6kYSOnMvaPifq1I5s3FzSaqW";
   // stdout.write("Masukkan flag untuk memulai project: ");
   bool flagConfirm = true; // Flag untuk konfirmasi awal game
@@ -41,7 +41,8 @@ void main() async {
   // }
   clearScreen(); // Hapus layar terminal
 
-  if (flagConfirm) { // Cek apakah flagConfirm true
+  if (flagConfirm) {
+    // Cek apakah flagConfirm true
     clearScreen(); // Hapus layar terminal
     stdin.echoMode = false; // Nonaktifkan echo input
     stdin.lineMode = false; // Nonaktifkan line-mode input
@@ -50,7 +51,10 @@ void main() async {
     while (true) {
       width = getScreenSize()[0] - 3; // Batas lebar grid
       height = getScreenSize()[1] - 3; // Batas tinggi grid
-      if (!autoMoveSnake()) { // Pindahin ular tiap frame, cek game over
+      if (!autoMoveSnake()) {
+        // Pindahin ular tiap frame, cek game over
+        clearScreen();
+        // printFlag();
         print("Game Over!"); // Tampilkan pesan game over
         break; // Keluar dari loop game
       }
@@ -74,7 +78,11 @@ bool autoMoveSnake() {
         Point(nextMove.x - head.x, nextMove.y - head.y); // Simpan arah gerak
 
     // Cek apakah ular nabrak tembok atau badan sendiri
-    if (nextMove.x < 0 || nextMove.x >= width || nextMove.y < 0 || nextMove.y >= height || snake.sublist(1).contains(nextMove)) {
+    if (nextMove.x < 0 ||
+        nextMove.x >= width ||
+        nextMove.y < 0 ||
+        nextMove.y >= height ||
+        snake.sublist(1).contains(nextMove)) {
       return false; // Game over, balik false
     }
 
