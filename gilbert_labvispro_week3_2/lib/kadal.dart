@@ -154,7 +154,6 @@ void drawGrid() async {
 
   int i = 1; // Inisialisasi counter buat render tubuh ular
   int posisiX = 0; // Variabel untuk menyimpan posisi X sebelumnya
-  int posisiY = 0; // Variabel untuk menyimpan posisi Y sebelumnya
 
   // Render tubuh ular
   for (var s in snake) {
@@ -174,31 +173,19 @@ void drawGrid() async {
         moveTo(s.y - 1, s.x + 1);
         stdout.write('O');
       } else {
-        if (posisiY < s.y) {
-          moveTo(s.y + 1, s.x + 2);
-          stdout.write('O');
-          moveTo(s.y + 1, s.x + 3);
-          stdout.write('O');
-          moveTo(s.y + 1, s.x);
-          stdout.write('O');
-          moveTo(s.y + 1, s.x - 1);
-          stdout.write('O');
-        } else {
-          moveTo(s.y + 1, s.x + 2);
-          stdout.write('O');
-          moveTo(s.y + 1, s.x + 3);
-          stdout.write('O');
-          moveTo(s.y + 1, s.x);
-          stdout.write('O');
-          moveTo(s.y + 1, s.x - 1);
-          stdout.write('O');
-        }
+        moveTo(s.y + 1, s.x + 2);
+        stdout.write('O');
+        moveTo(s.y + 1, s.x + 3);
+        stdout.write('O');
+        moveTo(s.y + 1, s.x);
+        stdout.write('O');
+        moveTo(s.y + 1, s.x - 1);
+        stdout.write('O');
       }
     } else {
       stdout.write('O'); // Render bagian tubuh biasa
     }
     posisiX = s.x; // Simpan posisi X saat ini
-    posisiY = s.y; // Simpan posisi Y saat ini
     i++; // Increment counter
   }
 
