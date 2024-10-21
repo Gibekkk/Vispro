@@ -12,10 +12,10 @@ List makeVertice() {
     [
       "B",
       [
-        ["A", 8, false],
+        // ["A", 8, false],
         ["C", 5, false],
-        ["D", 2, false],
-        ["E", 7, false]
+        // ["D", 2, false],
+        // ["E", 7, false]
       ]
     ],
     [
@@ -107,7 +107,7 @@ void main() {
   var vertices = makeVertice();
   var pathsVisited = [];
   var distanceVisited = [];
-  var firstNode = "B";
+  var firstNode = "A";
   var finding = true;
   var similarPath = [];
   List? shortestPath = null;
@@ -145,10 +145,14 @@ void main() {
       }
     }
     var lastNode = vertices[findIndex(path.last)];
+    bool pathAvailable = false;
     for (int i = 0; i < lastNode[1].length; i++) {
-      if (lastNode[1][i][0] == firstNode) distance += lastNode[1][i][1];
+      if (lastNode[1][i][0] == firstNode) {
+        distance += lastNode[1][i][1];
+        pathAvailable = true;
+      }
     }
-    if (!isInList(path, pathsVisited)) {
+    if (!isInList(path, pathsVisited) && pathAvailable) {
       for (int i = 0; i < path.length - 1; i++) {
         vertices[findIndex(path[i])][1].forEach((destination) =>
             {if (destination[0] == path[i + 1]) distance += destination[1]});
