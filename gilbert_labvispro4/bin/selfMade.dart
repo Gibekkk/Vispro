@@ -12,10 +12,10 @@ List makeVertice() {
     [
       "B",
       [
-        // ["A", 8, false],
+        ["A", 8, false],
         ["C", 5, false],
-        // ["D", 2, false],
-        // ["E", 7, false]
+        ["D", 2, false],
+        ["E", 7, false]
       ]
     ],
     [
