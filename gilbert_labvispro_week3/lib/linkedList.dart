@@ -1,5 +1,5 @@
 import 'dart:io'; // Import library untuk input/output
-import 'package:gilbert_labvispro_week3/Color.dart' as color;
+import 'Color.dart' as color;
 import 'dart:async';
 
 class Node {
