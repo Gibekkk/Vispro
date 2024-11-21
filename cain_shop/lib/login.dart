@@ -15,10 +15,6 @@ class LoginApp extends StatelessWidget {
       title: 'Cain Shop',
       debugShowCheckedModeBanner: false,
       home: const LoginScreen(),
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.grey,
-      ),
     );
   }
 }
@@ -52,38 +48,38 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Username',
-                    hintStyle: const TextStyle(color: Colors.black),
-                    filled: true,
-                    fillColor: kCainGreyLight,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
+                decoration: InputDecoration(
+                  hintText: 'Username',
+                  hintStyle: const TextStyle(color: Colors.black),
+                  filled: true,
+                  fillColor: kCainGreyLight,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
                   ),
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                  cursorColor: Colors.black
                 ),
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+                cursorColor: Colors.black,
+              ),
               const SizedBox(height: 15),
               TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    hintStyle: const TextStyle(color: Colors.black),
-                    filled: true,
-                    fillColor: kCainGreyLight,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  hintStyle: const TextStyle(color: Colors.black),
+                  filled: true,
+                  fillColor: kCainGreyLight,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
                   ),
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                  cursorColor: Colors.black
                 ),
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+                cursorColor: Colors.black,
+              ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
@@ -96,9 +92,12 @@ class LoginScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  shape: const BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0)),
                   ),
+                  foregroundColor: kCainYellow,
+                  backgroundColor: kCainGreyDark,
+                  elevation: 15.0,
                 ),
                 child: const Text('Login'),
               ),

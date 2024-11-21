@@ -1,3 +1,4 @@
+import 'package:cain_shop/colors.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -15,8 +16,15 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kCainBackgroundDark,
       appBar: AppBar(
-        title: Text(productName),
+        backgroundColor: kCainGreyDark,
+        title: Text(
+          productName,
+          style: TextStyle(
+            color: kCainGreyLight,
+          ),
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {

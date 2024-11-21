@@ -13,6 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const OnboardingScreen(), // Mulai dari layar onboarding
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.grey,
+        fontFamily: 'Rubik',
+      ),
     );
   }
 }

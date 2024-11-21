@@ -72,15 +72,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ElevatedButton(
                   onPressed: _nextPage,
                   style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      backgroundColor: kCainGreyMedium),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    foregroundColor: kCainYellow,
+                    backgroundColor: kCainGreyDark,
+                    elevation: 15.0,
+                  ),
                   child: Text(
                     _currentPage < _pages.length - 1 ? 'Next' : 'Start',
-                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ],
